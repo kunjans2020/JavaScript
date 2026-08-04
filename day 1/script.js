@@ -1,7 +1,7 @@
 // Swap using third variable
 
 let a = 20;
-let b = 30;
+let b = 50;
 let c;
 
 console.log("Before swapping:")
