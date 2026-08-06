@@ -17,7 +17,14 @@ let kilometers = meters / 1000;
 
 console.log(meters + " meters is equal to " + kilometers + " kilometers");
 
-// wap to convert second to hh:mm:ss format :
+// wap to convert second to hh:mm:ss format:
+
+let totalSeconds = 3656;
+let hours = Math.floor(totalSeconds / 3600);
+let minutes = Math.floor((totalSeconds % 3600) / 60);
+let seconds = totalSeconds % 60;
+
+console.log(hours + ":" + minutes + ":" + seconds);
 // wap to find the area of circle, triangle ,rectangle and square:
 
 let radius = 5;
