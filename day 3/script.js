@@ -3,10 +3,7 @@
 let a = 10;
 let b = 20;
 
-if (a > 5 && b < 30) {
-    console.log("Both conditions are true");
-}
-
+console.log(a > 5 && b < 25); // true && true => true
 //console.log(true && false);
 
 let c = 30;
