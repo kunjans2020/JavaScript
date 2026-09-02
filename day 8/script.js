@@ -31,4 +31,19 @@ for(let i=0; i<arr4.length; i++){
 
 console.log("Sum of all elements in the array is: " + sum);
 
-// wap to find maximum value from the array. 
+// wap to find maximum value from the array.
+
+let arr5 = [3,7,10,8,19];
+
+let max = arr[0];
+
+arr.forEach(function(value){
+    if (value > max ){
+        max=value;
+    }
+});
+
+console.log("maxium value is =", max);
+
+// wap to find minimum value from the array.
+
