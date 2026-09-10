@@ -30,6 +30,10 @@ body{
   border-radius: 10px;
 }
 
+.form-box input {
+    padding: 10px;
+}
+
 .form-box input,
 button {
   width: 100%;
