@@ -52,7 +52,6 @@ updateClock();
 setInterval(updateClock, 1000);
 
 
-
 const API_KEY = "YOUR_OPENWEATHER_API_KEY";
 
 const CITY = "Surat";
