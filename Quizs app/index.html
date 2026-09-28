@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Quiz App</title>
+    <link rel="stylesheet" href="style.css" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
+      crossorigin="anonymous"
+    />
+  </head>
+
+  <body style="height: 100vh">
+    <section class="p-2">
+      <div class="container quize-container">
+        <h2 class="text-center">Game Khelo Paise Jito...</h2>
+        <div class="text-center">
+          <p class="text-center fs-4 text-danger">Time left</p>
+          <p id="timer" class="fs-2 fw-bold text-danger">0</p>
+        </div>
+        <hr class="my-4" />
+        <div
+          class="d-flex justify-content-center align-items-center flex-column"
+        >
+          <div class="col-8 question-box">
+            <div class="mb-4">
+              <span id="question-index" class="fs-3">Q.1</span>
+              <p id="questions" class="fs-3">
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minus
+                illum eaque ratione. Veniam, similique tempore.
+              </p>
+            </div>
+            <div>
+              <div
+                id="option-box-A"
+                class="bg-light p-2 text-dark rounded border border-1 fs-5 my-2 shadow"
+              >
+                <span>A</span>
+                <span id="option-A">Lorem ipsum dolor sit amet.</span>
+              </div>
+              <div
+                id="option-box-B"
+                class="bg-light p-2 text-dark rounded border border-1 fs-5 my-2 shadow"
+              >
+                <span>B</span>
+                <span id="option-B">Lorem ipsum dolor sit amet.</span>
+              </div>
+              <div
+                id="option-box-C"
+                class="bg-light p-2 text-dark rounded border border-1 fs-5 my-2 shadow"
+              >
+                <span>C</span>
+                <span id="option-C">Lorem ipsum dolor sit amet.</span>
+              </div>
+              <div
+                id="option-box-D"
+                class="bg-light p-2 text-dark rounded border border-1 fs-5 my-2 shadow"
+              >
+                <span>D</span>
+                <span id="option-D">Lorem ipsum dolor sit amet.</span>
+              </div>
+            </div>
+            <div class="my-3 text-end">
+              <button id="next-button" class="btn btn-primary">N    ext</button>
+            </div>
+            <div>
+              <h2 id="score-dis"></h2>
+              <h2 id="pass-fail"></h2>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+      crossorigin="anonymous"
+    ></script>
+    <script src="script.js"></script>
+  </body>
+</html>

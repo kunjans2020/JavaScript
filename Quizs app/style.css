@@ -1,0 +1,20 @@
+* {
+  margin: 0px;
+  padding: 0px;
+}
+
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(to right,  #f78a5b, #f8cb71);
+}
+
+.quize-container {
+  width: 420px;
+  margin: 60px auto;
+  padding: 30px;
+  border-radius: 20px;
+  backdrop-filter: blur(15px);
+  box-shadow: 0px 10px 40px rgba(0, 0, 0, 0.3);
+}
