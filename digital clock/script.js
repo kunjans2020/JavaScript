@@ -57,7 +57,7 @@ const API_KEY = "YOUR_OPENWEATHER_API_KEY";
 const CITY = "Surat";
 
 async function getWeather() {
-    if (API_KEY === "YOUR_OPENWEATHER_API_KEY") {
+    if (API_KEY === "https://www.google.com/search?q=weather+surat&rlz=1C1VDKB_enIN1128IN1135&oq=wea&gs_lcrp=EgZjaHJvbWUqBwgBEAAYgAQyBggAEEUYOTIHCAEQABiABDIKCAIQABixAxiABDINCAMQABixAxjJAxiABDINCAQQABiSAxiABBiKBTINCAUQABiSAxiABBiKBTIKCAYQABixAxiABDIKCAcQABixAxiABDIKCAgQABixAxiABDIHCAkQABiABNIBCDY1NzJqMGo3qAIAsAIA&sourceid=chrome&source=chrome.ob&ie=UTF-8") {
         document.getElementById("condition").textContent =
             "Add OpenWeather API key";
 
