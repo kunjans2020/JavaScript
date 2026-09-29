@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Ultimate Fitness Gym</title>
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@800;900&family=Manrope:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+ <div class="wrap">
+  <a class="logo" href="#top">ULTIMATE <span>FITNESS</span></a>
+  <button id="menuBtn" aria-label="Menu kholein">Menu</button>
+  <nav id="nav">
+   <a href="#about">Intro</a><a href="#machines">Machines</a><a href="#diet">Diet Plan</a><a href="#fees">Fee Plan</a><a href="#trainers">Trainers</a><a href="#join">Join</a><a href="#contact">Contact</a>
+  </nav>
+ </div>
+</header>
+
+<main id="top">
+<div class="hero">
+ <div class="wrap">
+  <div>
+   <h1>Ultimate<em>Fitness</em></h1>
+   <p>Fit rehna sirf shauk nahi, aadat hai. Modern machines, trained coaches aur aapke goal ke hisaab se diet – sab ek hi jagah.</p>
+   <p class="cta" style="margin-top:32px"><a class="btn" href="#fees">Fee plan dekhein</a><a class="btn ghost" href="#join">Free trial lein</a></p>
+  </div>
+  <svg class="plate" viewBox="0 0 200 200" role="img" aria-label="Weight plate">
+   <circle cx="100" cy="100" r="94" fill="#1f2a36" stroke="#ff6b2c" stroke-width="6"/>
+   <circle cx="100" cy="100" r="66" fill="none" stroke="#56616d" stroke-width="3"/>
+   <circle cx="100" cy="100" r="22" fill="#101820" stroke="#ff6b2c" stroke-width="4"/>
+   <text x="100" y="58" text-anchor="middle" fill="#ff6b2c" font-family="Big Shoulders Display,Arial Narrow,sans-serif" font-weight="800" font-size="18">20 KG</text>
+   <text x="100" y="158" text-anchor="middle" fill="#ff6b2c" font-family="Big Shoulders Display,Arial Narrow,sans-serif" font-weight="800" font-size="18">20 KG</text>
+  </svg>
+ </div>
+</div>
+
+<div class="marquee" aria-hidden="true"><div class="track"><span>Strength</span><span>Cardio</span><span>Diet Plan</span><span>Personal Training</span><span>Transformation</span><span>Strength</span><span>Cardio</span><span>Diet Plan</span><span>Personal Training</span><span>Transformation</span><span>Strength</span><span>Cardio</span><span>Diet Plan</span><span>Personal Training</span><span>Transformation</span><span>Strength</span><span>Cardio</span><span>Diet Plan</span><span>Personal Training</span><span>Transformation</span></div></div>
+<section id="about">
+ <div class="wrap">
+  <h2>Fitness kya hai?</h2>
+  <p class="sub">Fitness ka matlab sirf bade muscles ya patla shareer nahi. Iska matlab hai ki aapka shareer roz ke kaam aaram se kar sake, aur dimaag tanav mein bhi shaant rahe.</p>
+  <div class="about">
+   <div>
+    <h3>Regular exercise ke fayde</h3><br>
+    <ul>
+     <li>Dil aur phephde majboot hote hain</li>
+     <li>Weight control mein rehta hai</li>
+     <li>Haddiyan aur muscles strong hote hain</li>
+     <li>Neend achhi aati hai, stress kam hota hai</li>
+     <li>Energy aur confidence badhta hai</li>
+    </ul>
+   </div>
+   <div>
+    <h3>Ultimate Fitness mein kya khaas hai</h3><br>
+    <ul>
+     <li>Certified trainers jo har member par dhyan dete hain</li>
+     <li>Cardio, strength aur functional training ka alag zone</li>
+     <li>Saaf-suthra, hawadaar aur AC hall</li>
+     <li>Alag timing: subah 5 baje se raat 10 baje tak</li>
+     <li>Beginners ke liye free fitness assessment</li>
+    </ul>
+   </div>
+  </div>
+  <div class="stats">
+   <div><b data-n="1200">0</b><span>Active members</span></div>
+   <div><b data-n="40">0</b><span>Machines</span></div>
+   <div><b data-n="12">0</b><span>Certified trainers</span></div>
+   <div><b data-n="15">0</b><span>Hours open daily</span></div>
+  </div>
+ </div>
+</section>
+
+<section id="machines" class="alt">
+ <div class="wrap">
+  <h2>Fitness Machines</h2>
+  <p class="sub">Body ke har hisse ke liye machine. Zone chuniye aur dekhiye kaunsi machine kis kaam aati hai.</p>
+  <div class="tabs" id="mTabs" role="tablist"></div>
+  <div class="art" id="mArt" role="img" aria-label="Machine ka chitra"></div>
+  <div class="grid" id="mGrid"></div>
+ </div>
+</section>
+
+<section id="diet">
+ <div class="wrap">
+  <h2>Diet Plan</h2>
+  <p class="sub">Exercise 30% kaam karta hai, baaki 70% khana. Apna goal chuniye aur ek din ka sample plan dekhiye (vegetarian).</p>
+  <div class="tabs" id="dTabs" role="tablist"></div>
+  <div class="meal" id="meals"></div>
+  <p class="kcal" id="kcal"></p>
+  <p class="tips" id="tips"></p>
+ </div>
+</section>
+
+<section id="fees" class="alt">
+ <div class="wrap">
+  <h2>Gym Fee Plan</h2>
+  <p class="sub">Normal membership mein aap apne hisaab se workout karte hain. Personal training mein aapka apna trainer hota hai jo plan banata aur saath khada rehta hai.</p>
+  <div class="switch" role="group" aria-label="Plan type">
+   <button id="tNormal" aria-pressed="true">Normal</button>
+   <button id="tPersonal" aria-pressed="false">Personal Training</button>
+  </div>
+  <div class="dur" id="dur"></div>
+  <div class="plans" id="plans"></div>
+  <p class="tips">*Prices sample hain, apne gym ke hisaab se badal lein. Admission fee alag se lag sakti hai.</p>
+ </div>
+</section>
+
+<section id="trainers">
+ <div class="wrap">
+  <h2>Hamare Trainers</h2>
+  <p class="sub">Hamare trainers aapke goal tak pahunchne mein madad karte hain.</p>
+  <div class="grid">
+   <div class="card tr"><div class="av">SB</div><h3>Shekhar Bhai</h3><small>Gym Trainer</small><p>Aapke workout, form aur routine par dhyan dete hain.</p></div>
+   <div class="card tr"><div class="av">VB</div><h3>Vinodh Bhai</h3><small>Gym Trainer</small><p>Beginners se lekar advanced members tak sabki madad karte hain.</p></div>
+  </div>
+ </div>
+</section>
+
+<section id="join">
+ <div class="wrap">
+  <h2>Free Trial Lein</h2>
+  <p class="sub">Form bharein, hamari team aapko call karegi.</p>
+  <form id="jf">
+   <label>Naam<input required name="n" autocomplete="name"></label>
+   <label>Mobile<input required name="m" type="tel" pattern="[0-9]{10}" title="10 digit number" autocomplete="tel"></label>
+   <label class="full">Aapka goal
+    <select name="g"><option>Weight loss</option><option>Muscle gain</option><option>Fit rehna</option></select>
+   </label>
+   <button class="btn full" type="submit">Trial book karein</button>
+  </form>
+  <div id="msg" role="status"></div>
+ </div>
+</section>
+<section id="contact" class="alt">
+ <div class="wrap">
+  <h2>Contact &amp; Timing</h2>
+  <p class="sub">Seedha aayein, call karein ya WhatsApp par message bhejein.</p>
+  <div class="contact">
+   <div class="info">
+    <div><b>Address</b>A8, Swastik Nagar Society, Chalthan, Palsana, Surat, Gujarat</div>
+    <div><b>Phone</b><a href="tel:+916354198378">+91 63541 98378</a></div>
+    <div><b>WhatsApp</b><a href="https://wa.me/916354198378?text=Hello%20Ultimate%20Fitness%2C%20mujhe%20membership%20ki%20jaankari%20chahiye" target="_blank" rel="noopener">Message bhejein</a></div>
+    <div><b>Map</b><a href="https://www.google.com/maps/search/?api=1&amp;query=A8+Swastik+Nagar+Society+Chalthan+Palsana+Surat" target="_blank" rel="noopener">Google Maps par dekhein</a></div>
+   </div>
+   <table class="hours" aria-label="Gym timing">
+    <tr><td>Somvaar – Shanivaar (subah)</td><td>5:00 AM – 10:00 AM</td></tr>
+    <tr><td>Somvaar – Shanivaar (shaam)</td><td>4:00 PM – 10:00 PM</td></tr>
+    <tr><td>Ravivaar</td><td>6:00 AM – 12:00 PM</td></tr>
+   </table>
+  </div>
+ </div>
+</section>
+</main>
+<a class="wa" href="https://wa.me/916354198378?text=Hello%20Ultimate%20Fitness%2C%20mujhe%20membership%20ki%20jaankari%20chahiye" target="_blank" rel="noopener" aria-label="WhatsApp par baat karein">WhatsApp</a>
+
+<footer><div class="wrap"><b>Ultimate Fitness</b><br>&copy; 2026 Ultimate Fitness. Sabhi adhikaar surakshit.</div></footer>
+
+<script src="script.js"></script>
+</body>
+</html>
