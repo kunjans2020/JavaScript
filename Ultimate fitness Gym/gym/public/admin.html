@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow">
+<title>Leads – Ultimate Fitness</title>
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@800;900&family=Manrope:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<style>
+ section{padding:48px 0}
+ h2{font-size:clamp(2.4rem,6vw,3.6rem)}
+ #login{max-width:420px;grid-template-columns:1fr}
+ .bar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-bottom:22px}
+ .bar .grow{flex:1}
+ .btn.sm{padding:10px 20px;font-size:.9rem}
+ .count{color:var(--mut);font-size:.95rem}
+ .tablewrap{overflow-x:auto;border:1px solid var(--line);border-radius:16px;background:var(--s2)}
+ table.leads{width:100%;border-collapse:collapse;min-width:760px}
+ .leads th{font:800 1.1rem 'Big Shoulders Display',sans-serif;text-transform:uppercase;color:var(--org2);text-align:left;padding:14px 16px;border-bottom:1px solid var(--line);white-space:nowrap}
+ .leads td{padding:12px 16px;border-bottom:1px solid var(--line);vertical-align:middle}
+ .leads tr:last-child td{border:0}
+ .leads select,.leads input{padding:8px 10px;border:1px solid var(--line);border-radius:10px;background:var(--s1);color:var(--ink);font:inherit;font-size:.9rem;width:100%}
+ .leads .when{color:var(--mut);font-size:.85rem;white-space:nowrap}
+ .leads a{text-decoration:none;border-bottom:1px solid #3a4452}
+ .x{background:none;border:1px solid var(--line);color:var(--mut);border-radius:8px;padding:6px 10px;cursor:pointer;font:600 .85rem 'Manrope',sans-serif}
+ .x:hover{color:#ff8a8a;border-color:#ff8a8a}
+ .empty{padding:40px;text-align:center;color:var(--mut)}
+ #err{color:#ff8a8a;font-weight:700;margin-top:12px;min-height:1.5em}
+ [hidden]{display:none!important}
+</style>
+</head>
+<body>
+<header><div class="wrap"><a class="logo" href="/">ULTIMATE <span>FITNESS</span></a><a class="btn ghost sm" href="/" style="margin:0">Website par jayein</a></div></header>
+<main>
+<section>
+ <div class="wrap">
+  <h2>Trial Leads</h2>
+
+  <form id="login">
+   <label class="full">Admin password<input id="pw" type="password" autocomplete="current-password" required></label>
+   <button class="btn full" type="submit">Login</button>
+  </form>
+
+  <div id="panel" hidden>
+   <div class="bar">
+    <select id="filter" aria-label="Status filter" style="padding:10px 14px;border:1px solid var(--line);border-radius:12px;background:var(--s2);color:var(--ink);font:inherit">
+     <option value="">Sab leads</option><option value="new">New</option><option value="contacted">Contacted</option><option value="joined">Joined</option><option value="not_interested">Not interested</option>
+    </select>
+    <span class="count" id="count"></span>
+    <span class="grow"></span>
+    <button class="btn ghost sm" id="csv" style="margin:0">Download CSV</button>
+    <button class="btn ghost sm" id="out" style="margin:0">Logout</button>
+   </div>
+   <div class="tablewrap">
+    <table class="leads">
+     <thead><tr><th>Date</th><th>Naam</th><th>Mobile</th><th>Goal</th><th>Status</th><th>Note</th><th></th></tr></thead>
+     <tbody id="rows"></tbody>
+    </table>
+   </div>
+  </div>
+  <p id="err" role="alert"></p>
+ </div>
+</section>
+</main>
+
+<script>
+const $=s=>document.querySelector(s);
+const LABEL={new:'New',contacted:'Contacted',joined:'Joined',not_interested:'Not interested'};
+let pw=sessionStorage.getItem('adminPw')||'',leads=[];
+
+async function api(path,opt={}){
+ const r=await fetch(path,{...opt,headers:{'x-admin-password':pw,'Content-Type':'application/json',...(opt.headers||{})}});
+ if(r.status===401){logout();throw new Error('Galat password.')}
+ if(!r.ok){const d=await r.json().catch(()=>({}));throw new Error(d.error||'Error '+r.status)}
+ return r;
+}
+function logout(){pw='';sessionStorage.removeItem('adminPw');$('#panel').hidden=true;$('#login').hidden=false}
+async function load(){
+ $('#err').textContent='';
+ try{
+  leads=(await(await api('/api/leads')).json()).leads;
+  $('#login').hidden=true;$('#panel').hidden=false;render();
+ }catch(e){$('#err').textContent=e.message}
+}
+function fmt(s){const d=new Date(s.replace(' ','T')+'Z');return d.toLocaleString('en-IN',{day:'2-digit',month:'short',hour:'2-digit',minute:'2-digit'})}
+function render(){
+ const f=$('#filter').value,list=f?leads.filter(l=>l.status===f):leads;
+ $('#count').textContent=list.length+' / '+leads.length+' leads';
+ const body=$('#rows');body.textContent='';
+ if(!list.length){body.innerHTML='<tr><td colspan="7" class="empty">Abhi koi lead nahi hai.</td></tr>';return}
+ for(const l of list){
+  const tr=document.createElement('tr');
+  const td=(...n)=>{const c=document.createElement('td');c.append(...n);tr.append(c);return c};
+  td(Object.assign(document.createElement('span'),{className:'when',textContent:fmt(l.created_at)}));
+  td(l.name);
+  td(Object.assign(document.createElement('a'),{href:'tel:+91'+l.mobile,textContent:l.mobile}),' ',
+     Object.assign(document.createElement('a'),{href:'https://wa.me/91'+l.mobile,target:'_blank',rel:'noopener',textContent:'WA',title:'WhatsApp'}));
+  td(l.goal);
+  const sel=document.createElement('select');sel.setAttribute('aria-label','Status');
+  for(const k in LABEL)sel.add(new Option(LABEL[k],k,false,k===l.status));
+  sel.onchange=()=>save(l,{status:sel.value});
+  td(sel);
+  const note=document.createElement('input');note.value=l.note;note.maxLength=500;note.placeholder='Note...';note.setAttribute('aria-label','Note');
+  note.onchange=()=>save(l,{note:note.value});
+  td(note);
+  const del=Object.assign(document.createElement('button'),{className:'x',textContent:'Delete'});
+  del.onclick=async()=>{if(!confirm(l.name+' ki lead delete karein?'))return;
+   try{await api('/api/leads/'+l.id,{method:'DELETE'});leads=leads.filter(x=>x.id!==l.id);render()}catch(e){$('#err').textContent=e.message}};
+  td(del);
+  body.append(tr);
+ }
+}
+async function save(l,patch){
+ try{await api('/api/leads/'+l.id,{method:'PATCH',body:JSON.stringify(patch)});Object.assign(l,patch);$('#err').textContent='';if('status'in patch)render()}
+ catch(e){$('#err').textContent=e.message}
+}
+$('#login').onsubmit=e=>{e.preventDefault();pw=$('#pw').value;sessionStorage.setItem('adminPw',pw);load()};
+$('#filter').onchange=render;
+$('#out').onclick=logout;
+$('#csv').onclick=async()=>{
+ try{const b=await(await api('/api/leads.csv')).blob();const a=document.createElement('a');a.href=URL.createObjectURL(b);a.download='leads.csv';a.click();URL.revokeObjectURL(a.href)}
+ catch(e){$('#err').textContent=e.message}
+};
+if(pw)load();
+</script>
+</body>
+</html>
